@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import axios from "axios";
-import ContactsList from "./features/contacts/ContactsList";
+import ContactsList from "./features/contacts/contactsList/ContactsList";
 import AlphabetLabel from "./features/label/AlphabetLabel";
 import { useContact } from "./features/contacts/contactsContext";
 import "./App.css";
-import { ContactCard } from "./features/contacts/ContactCard";
+import { ContactCard } from "./features/contacts/contactCard/ContactCard";
 
 function App() {
   const contactContext = useContact();
