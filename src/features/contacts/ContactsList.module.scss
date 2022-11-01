@@ -1,0 +1,20 @@
+.contactsContainer {
+  flex: 2;
+  overflow-y: auto;
+  ul {
+    height: 78vh;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+}
+
+.contactItem {
+  flex-basis: 23rem;
+  padding: 0.3rem;
+  margin-block: 0.3rem;
+  margin-inline: 0.5rem;
+  border-bottom: 1px dotted gainsboro;
+  cursor: pointer;
+}
