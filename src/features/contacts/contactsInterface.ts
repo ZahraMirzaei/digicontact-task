@@ -1,18 +1,27 @@
 export interface IContact {
-  firstName: string;
-  lastName: string;
+  id: {
+    value: string;
+  };
+  name: {
+    first: string;
+    last: string;
+  };
+  location: {
+    street: {
+      number: number;
+      name: string;
+    };
+    city: string;
+    state: string;
+    postcode: string;
+  };
   email: string;
   phone: string;
-  street: string;
-  city: string;
-  state: string;
-  postcode: string;
-  USERNAME: string;
+  login: {
+    userName: string;
+  };
+  picture: string;
 }
-
-// export interface IContactsList {
-//   contactsList: IContact[] | null;
-// }
 
 export interface IContactsContext {
   contactsList: IContact[] | null;
