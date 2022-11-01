@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  .alphabetLetter {
+    flex: 1;
+    font-size: 1.2rem;
+    margin-inline: 0.1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    }
+  }
+}
