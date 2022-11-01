@@ -6,7 +6,16 @@ html,
 *::after {
   box-sizing: inherit;
 }
+html,
+body {
+  height: 70vh;
+}
 .App {
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Arial", sans-serif;
+}
+
+.mainContainer {
+  display: flex;
+  padding-top: 1rem;
 }
