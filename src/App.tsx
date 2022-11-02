@@ -1,26 +1,18 @@
 import { useEffect } from "react";
-import axios from "axios";
 import ContactsList from "./features/contacts/contactsList/ContactsList";
 import AlphabetLabel from "./features/label/AlphabetLabel";
 import { useContact } from "./features/contacts/contactsContext";
-import "./App.css";
 import { ContactCard } from "./features/contacts/contactCard/ContactCard";
+import { getContacts } from "./api";
+import "./App.css";
 
 function App() {
   const contactContext = useContact();
 
   useEffect(() => {
-    axios
-      .get("https://randomuser.me/api/", {
-        params: {
-          results: 100,
-          inc: "name, location, email, login, phone, picture, id",
-          nat: "us",
-        },
-      })
-      .then((response) => {
-        contactContext?.setContactsListHandler(response.data.results);
-      });
+    getContacts(100).then((response) => {
+      contactContext?.setContactsListHandler(response.data.results);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
