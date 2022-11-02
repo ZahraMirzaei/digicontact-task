@@ -1,13 +1,14 @@
-import { useContact } from "./contactsContext";
+import { useContact } from "../contactsContext";
+import { IContact } from "../contactsInterface";
 import classes from "./ContactsList.module.scss";
 const ContactsList = () => {
-  const contactCtx = useContact();
+  const { contactsList } = useContact();
   let contactList = null;
 
-  if (!contactCtx?.contactsList) {
+  if (!contactsList) {
     contactList = <div>loading</div>;
   } else {
-    contactList = contactCtx?.contactsList.map((contact) => (
+    contactList = contactsList.map((contact: IContact) => (
       <li className={classes.contactItem} key={contact.phone}>
         <span>
           {contact.name.first}, {contact.name.last.toUpperCase()}

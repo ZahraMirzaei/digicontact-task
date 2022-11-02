@@ -7,14 +7,13 @@ import { getContacts } from "./api";
 import "./App.css";
 
 function App() {
-  const contactContext = useContact();
+  const { setContactsListHandler } = useContact();
 
   useEffect(() => {
     getContacts(100).then((response) => {
-      contactContext?.setContactsListHandler(response.data.results);
+      setContactsListHandler(response.data.results);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setContactsListHandler]);
 
   return (
     <div className="App">

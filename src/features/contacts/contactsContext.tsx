@@ -1,11 +1,17 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import { IContact, IContactsContext } from "./contactsInterface";
 
 const contactsContext = createContext<IContactsContext | null>(null);
 
 function useContact() {
   const contacts = useContext(contactsContext);
-  if (contacts === undefined) {
+  if (contacts === null) {
     throw new Error("useContact must be used within a ContactsProvider");
   }
   return contacts;
@@ -14,11 +20,11 @@ function useContact() {
 const ContactsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [contactsList, setContactsList] = useState<IContact[] | null>(null);
 
-  function setContactsListHandler(contactsList: IContact[]) {
+  const setContactsListHandler = useCallback((contactsList: IContact[]) => {
     if (contactsList) {
       setContactsList(contactsList);
     }
-  }
+  }, []);
 
   const value: IContactsContext = {
     contactsList,
