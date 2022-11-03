@@ -1,7 +1,12 @@
 .container {
   display: flex;
   justify-content: space-evenly;
+  list-style: none;
+  margin: 0;
+  padding-inline: 1rem;
   .alphabetLetter {
+    display: flex;
+    justify-content: space-evenly;
     flex: 1;
     font-size: 1.2rem;
     margin-inline: 0.1rem;
@@ -11,5 +16,19 @@
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
     }
+  }
+  .disableLetter {
+    color: gray;
+    background-color: gainsboro;
+    pointer-events: none;
+  }
+  .activeLetter {
+    color: white;
+    background-color: red;
+    transform: scale(1.3);
+  }
+  .recordLength {
+    font-size: 0.7rem;
+    align-self: flex-end;
   }
 }
