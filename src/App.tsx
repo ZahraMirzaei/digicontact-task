@@ -7,13 +7,14 @@ import { getContacts } from "./api";
 import "./App.css";
 
 function App() {
-  const { setContactsListHandler } = useContact();
+  const { setContactsListHandler, setActiveLetterHandler } = useContact();
 
   useEffect(() => {
     getContacts(100).then((response) => {
       setContactsListHandler(response.data.results);
+      setActiveLetterHandler("a");
     });
-  }, [setContactsListHandler]);
+  }, [setContactsListHandler, setActiveLetterHandler]);
 
   return (
     <div className="App">
