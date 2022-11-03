@@ -23,7 +23,14 @@ export interface IContact {
   picture: string;
 }
 
+export interface IOrganizedContactList {
+  alphabet: string;
+  record: IContact[];
+}
+
 export interface IContactsContext {
-  contactsList: IContact[] | null;
-  setContactsListHandler: (contactsList: IContact[]) => void;
+  activeContactsList: IOrganizedContactList | null;
+  activeLetter: string;
+  setActiveLetterHandler: (letter: string) => void;
+  setRawContactsListHandler: (contactsList: IContact[]) => void;
 }
