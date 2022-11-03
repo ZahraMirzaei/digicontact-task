@@ -2,14 +2,14 @@ import { useContact } from "../contactsContext";
 import { IContact } from "../contactsInterface";
 import classes from "./ContactsList.module.scss";
 const ContactsList = () => {
-  const { contactsList } = useContact();
-  let contactList = null;
+  const { activeContactsList } = useContact();
+  let contactsList = null;
 
-  if (!contactsList) {
-    contactList = <div>loading</div>;
+  if (!activeContactsList) {
+    contactsList = <div>loading</div>;
   } else {
-    contactList = contactsList.map((contact: IContact) => (
-      <li className={classes.contactItem} key={contact.phone}>
+    contactsList = activeContactsList.record.map((contact: IContact) => (
+      <li className={classes.contactItem} key={contact.id.value}>
         <span>
           {contact.name.first}, {contact.name.last.toUpperCase()}
         </span>
@@ -18,7 +18,7 @@ const ContactsList = () => {
   }
 
   return (
-    <div className={classes.contactsContainer}>{<ul>{contactList}</ul>}</div>
+    <div className={classes.contactsContainer}>{<ul>{contactsList}</ul>}</div>
   );
 };
 
