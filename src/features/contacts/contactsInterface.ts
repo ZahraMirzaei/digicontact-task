@@ -1,3 +1,4 @@
+import { ILabelInfo } from "../label/labelInterface";
 export interface IContact {
   id: {
     value: string;
@@ -31,6 +32,7 @@ export interface IOrganizedContactList {
 export interface IContactsContext {
   activeContactsList: IOrganizedContactList | null;
   activeLetter: string;
+  alphabetInfo: ILabelInfo[] | undefined;
   setActiveLetterHandler: (letter: string) => void;
-  setRawContactsListHandler: (contactsList: IContact[]) => void;
+  setContactsListHandler: (contactsList: IContact[]) => void;
 }
