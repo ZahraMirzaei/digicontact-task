@@ -19,7 +19,7 @@
     box-shadow: $boxShadowSm;
     transition: all 0.2s linear;
     cursor: pointer;
-    padding: 0.3rem 0.1rem;
+    padding: 0.5rem 0.3rem;
     margin-bottom: 0.2rem;
     &:hover {
       box-shadow: $boxShadowLg;
@@ -34,9 +34,6 @@
     color: $white;
     background-color: $brandColor;
     transform: scale(1.2);
-    @include desktop {
-      transform: scaleY(1.2);
-    }
   }
   .recordLength {
     font-size: 0.7rem;
