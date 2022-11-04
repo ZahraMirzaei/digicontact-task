@@ -20,12 +20,7 @@ const ShowCardContextProvider: React.FC<{ children: ReactNode }> = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   function setVisibleHandler(value: boolean) {
-    setIsVisible((prev) => {
-      if (prev !== value) {
-        return value;
-      }
-      return prev;
-    });
+    setIsVisible(value);
   }
 
   const value: IShowCard = {

@@ -26,11 +26,14 @@ const ContactsList = () => {
             : ""
         }`}
         key={contact.id.value}
-        onClick={() => onContactClickHandler(contact)}
+        onClick={(e) => onContactClickHandler(contact)}
       >
         <span>
           {contact.name.first}, {contact.name.last.toUpperCase()}
         </span>
+        {isVisible && selectedContact?.id.value === contact.id.value ? (
+          <ContactCard contactInfo={selectedContact} />
+        ) : null}
       </li>
     ));
   }
@@ -38,7 +41,6 @@ const ContactsList = () => {
   return (
     <div className={classes.contactsContainer}>
       <ul>{contactsList}</ul>
-      <ContactCard contactInfo={selectedContact} />
     </div>
   );
 };

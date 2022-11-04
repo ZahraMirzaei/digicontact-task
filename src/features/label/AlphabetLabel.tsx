@@ -1,11 +1,14 @@
 import { useContact } from "../contacts/contactsContext";
+import { useShowCard } from "../contacts/contactCard/showCardContext";
 import classes from "./AlphabetLabel.module.scss";
 
 const AlphabetLabel = () => {
   const { alphabetInfo, activeLetter, setActiveLetterHandler } = useContact();
+  const { setVisibleHandler } = useShowCard();
 
   const onClickHandler = (letter: string) => {
     setActiveLetterHandler(letter);
+    setVisibleHandler(false);
   };
   return (
     <ul className={classes.container}>

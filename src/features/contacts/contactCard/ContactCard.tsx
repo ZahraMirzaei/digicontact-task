@@ -1,6 +1,7 @@
 import { IContact } from "../contactsInterface";
 import classes from "./ContactCard.module.scss";
 import { useShowCard } from "../contactCard/showCardContext";
+import React from "react";
 
 interface Props {
   contactInfo: IContact | null;
@@ -8,7 +9,8 @@ interface Props {
 export const ContactCard: React.FC<Props> = ({ contactInfo }) => {
   const { isVisible, setVisibleHandler } = useShowCard();
 
-  function onCloseClickHandler() {
+  function onCloseClickHandler(e: React.MouseEvent<HTMLElement>) {
+    e.stopPropagation();
     setVisibleHandler(false);
   }
   return (
@@ -28,7 +30,7 @@ export const ContactCard: React.FC<Props> = ({ contactInfo }) => {
               alt={contactInfo.login.username}
             />
           </div>
-          <div className={classes.useName}>
+          <div className={classes.userName}>
             USERNAME &nbsp;{contactInfo.login.username}
           </div>
           <div className={classes.infoContainer}>
@@ -65,9 +67,9 @@ export const ContactCard: React.FC<Props> = ({ contactInfo }) => {
               </div>
             </div>
           </div>
-          <span className={classes.close} onClick={onCloseClickHandler}>
+          <button className={classes.close} onClick={onCloseClickHandler}>
             ✖
-          </span>
+          </button>
         </div>
       ) : null}
     </>

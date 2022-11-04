@@ -1,64 +1,66 @@
 @use "../../../scss/abstracts" as *;
 
 .cardContainer {
+  font-size: 0.8rem;
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 5.5rem;
+  align-items: flex-start;
+  position: absolute;
+  top: 100%;
+  left: 0;
   right: 0;
-  max-width: 30rem;
   min-width: 21rem;
-  padding: 2rem 2.5rem 7rem 1rem;
+  padding: 0.5rem 1.5rem 1.5rem;
   background-color: $lightBg;
   box-shadow: $boxShadowMd;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+  z-index: 10;
   @include mobile() {
     min-width: 24rem;
   }
   @include tablet() {
-    position: absolute;
-    top: 5rem;
-    right: 0;
-    min-width: 30rem;
+    min-width: 32rem;
   }
 }
 
 .showCard {
-  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
 }
 
 .close {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-inline: 0.5rem;
+  padding-inline: 0.3rem;
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 1.3rem;
+  top: 0.2rem;
+  left: 0.2rem;
+  font-size: 1.1rem;
   border-radius: 50%;
   cursor: pointer;
   background-color: $brandColor;
   color: $white;
   box-shadow: $boxShadowMd;
+  border: none;
 }
 
 .imgContainer {
-  width: 7rem;
+  width: 6.5rem;
   border-radius: 50%;
-  object-fit: contain;
   overflow: hidden;
   box-shadow: $boxShadowLg;
   img {
     display: block;
     width: 100%;
+    object-fit: cover;
   }
 }
 
-.useName {
+.userName {
+  font-size: 0.8rem;
   padding: 0.5rem 0.2rem;
   background-color: $brandColor;
   color: $white;
@@ -74,27 +76,22 @@
 }
 
 .contactName {
+  margin: 0;
+  padding-bottom: 1rem;
   font-size: 1.5rem;
   color: $lightGray;
 }
 
 .contactData > div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  // align-items: center;
   text-align: left;
   flex-wrap: wrap;
-  @include mobile() {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: stretch;
-  }
-
+  font-weight: normal;
   :first-child {
     font-weight: bold;
     padding-right: 0.5rem;
-    @include mobile() {
-      flex-basis: 5.7rem;
-    }
+    flex-basis: 5.7rem;
   }
 }

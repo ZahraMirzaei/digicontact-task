@@ -21,8 +21,8 @@ function App() {
       <h1 className="digiContact">digiContact</h1>
 
       <div className="mainContainer">
-        <AlphabetLabel />
         <ShowCardContextProvider>
+          <AlphabetLabel />
           <ContactsList />
         </ShowCardContextProvider>
       </div>

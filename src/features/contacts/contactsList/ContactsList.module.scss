@@ -1,11 +1,12 @@
 @use "../../../scss/abstracts" as *;
 
 .contactsContainer {
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  flex-grow: 1;
+  min-height: 78vh;
+  padding-bottom: 14rem;
   @include tablet() {
-    height: 78vh;
     flex-grow: 0;
   }
   ul {
@@ -22,7 +23,8 @@
 }
 
 .contactItem {
-  flex-basis: 22rem;
+  flex: 1;
+  position: relative;
   padding: 0.5rem;
   margin: 0.7rem 1.5rem;
   border-bottom: 1px dotted $lightGray;
@@ -32,9 +34,13 @@
   &:hover {
     padding-left: 1rem;
   }
+  @include tablet() {
+    flex-basis: 32rem;
+  }
 }
 
 .selectedContact {
+  font-weight: bold;
   padding-left: 1rem;
   border-left: 0.3rem solid $brandColor;
 }
