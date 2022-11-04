@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import ContactsList from "./features/contacts/contactsList/ContactsList";
 import AlphabetLabel from "./features/label/AlphabetLabel";
 import { useContact } from "./features/contacts/contactsContext";
-import { ContactCard } from "./features/contacts/contactCard/ContactCard";
 import { getContacts } from "./api";
-import "./App.css";
+import { ShowCardContextProvider } from "./features/contacts/contactCard/showCardContext";
+import "./App.scss";
 
 function App() {
   const { setContactsListHandler, setActiveLetterHandler } = useContact();
@@ -17,12 +17,14 @@ function App() {
   }, [setContactsListHandler, setActiveLetterHandler]);
 
   return (
-    <div className="App">
-      <h1>digiContact</h1>
-      <AlphabetLabel />
+    <div>
+      <h1 className="digiContact">digiContact</h1>
+
       <div className="mainContainer">
-        <ContactsList />
-        <ContactCard />
+        <AlphabetLabel />
+        <ShowCardContextProvider>
+          <ContactsList />
+        </ShowCardContextProvider>
       </div>
     </div>
   );
