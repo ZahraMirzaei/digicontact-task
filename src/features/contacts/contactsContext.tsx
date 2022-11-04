@@ -44,7 +44,7 @@ const ContactsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   const setActiveLetterHandler = useCallback((letter: string) => {
-    setActiveLetter(letter); //TODO: ask about use state after set in this function.
+    setActiveLetter(letter);
     const filteredContactsList = contactsListRef.current!.filter(
       (contactsList) => contactsList.alphabet === letter
     );
@@ -69,3 +69,7 @@ const ContactsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 export { useContact, ContactsProvider };
+
+/*
+? activeLetter has initial value, but it don't work. I forced to use setter method in app file to gave it initial value again. How can I solve it?
+*/

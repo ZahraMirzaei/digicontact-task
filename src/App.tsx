@@ -17,7 +17,7 @@ function App() {
   }, [setContactsListHandler, setActiveLetterHandler]);
 
   return (
-    <div>
+    <>
       <h1 className="digiContact">digiContact</h1>
 
       <div className="mainContainer">
@@ -26,7 +26,7 @@ function App() {
           <ContactsList />
         </ShowCardContextProvider>
       </div>
-    </div>
+    </>
   );
 }
 

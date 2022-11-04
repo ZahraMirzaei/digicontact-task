@@ -7,7 +7,7 @@ import classes from "./ContactsList.module.scss";
 const ContactsList = () => {
   const { activeContactsList } = useContact();
   const { isVisible, setVisibleHandler } = useShowCard();
-  const [selectedContact, setSelectedContact] = useState<IContact | null>(null);
+  const [selectedContact, setSelectedContact] = useState<IContact>();
   let contactsList = null;
 
   function onContactClickHandler(contact: IContact) {
