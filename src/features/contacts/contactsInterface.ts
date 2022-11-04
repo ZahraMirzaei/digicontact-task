@@ -19,7 +19,7 @@ export interface IContact {
   email: string;
   phone: string;
   login: {
-    userName: string;
+    username: string;
   };
   picture: {
     large: string;
