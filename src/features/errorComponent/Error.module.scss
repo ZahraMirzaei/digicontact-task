@@ -1,0 +1,17 @@
+@use "../../scss/abstracts/" as *;
+
+.errorContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .errorText {
+    font-size: 2rem;
+    color: $brandColor;
+    margin-bottom: 1rem;
+  }
+  .errorTitle {
+    text-align: left;
+    margin: 0;
+  }
+}
