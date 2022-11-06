@@ -1,0 +1,32 @@
+@use "../../scss/abstracts/" as *;
+
+.spinnerWrapper {
+  display: block;
+  text-align: center;
+}
+
+.spinner {
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  margin-top: 20rem;
+}
+.spinner:after {
+  content: " ";
+  display: block;
+  width: 110px;
+  height: 110px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 10px solid $brandColor;
+  border-color: $brandColor transparent $brandColor transparent;
+  animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

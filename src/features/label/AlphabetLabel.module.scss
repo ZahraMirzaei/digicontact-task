@@ -1,0 +1,42 @@
+@use "../../scss/abstracts" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+  margin: 0;
+  padding-inline: 1rem;
+  @include tablet() {
+    flex-direction: row;
+  }
+  .alphabetLetter {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    font-size: 1.2rem;
+    margin-inline: 0.1rem;
+    box-shadow: $boxShadowSm;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    padding: 0.5rem 0.3rem;
+    margin-bottom: 0.2rem;
+    &:hover {
+      box-shadow: $boxShadowLg;
+    }
+  }
+  .disableLetter {
+    color: $lightGray;
+    background-color: $lightestGray;
+    pointer-events: none;
+  }
+  .activeLetter {
+    color: $white;
+    background-color: $brandColor;
+    transform: scale(1.2);
+  }
+  .recordLength {
+    font-size: 0.7rem;
+    align-self: flex-end;
+  }
+}

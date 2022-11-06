@@ -1,0 +1,21 @@
+@use "./abstracts" as *;
+
+.mainContainer {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  @include tablet() {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.digiContact {
+  margin-block-end: 0;
+}
+
+.error {
+  color: blue;
+}
