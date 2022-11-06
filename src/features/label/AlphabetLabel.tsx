@@ -1,30 +1,40 @@
-import { useContact } from "../contacts/contactsContext";
 import { useShowCard } from "../contacts/contactCard/showCardContext";
+import { IOrganizeContactList } from "../contacts/contactsInterface";
 import classes from "./AlphabetLabel.module.scss";
 
-const AlphabetLabel = () => {
-  const { alphabetInfo, activeLetter, setActiveLetterHandler } = useContact();
+interface Props {
+  activeLetter?: string;
+  groupedContactsList: IOrganizeContactList[];
+  selectNewLetter: (letter: string) => void;
+}
+const AlphabetLabel: React.FC<Props> = ({
+  activeLetter,
+  groupedContactsList,
+  selectNewLetter,
+}) => {
   const { setVisibleHandler } = useShowCard();
 
   const onClickHandler = (letter: string) => {
-    setActiveLetterHandler(letter);
+    selectNewLetter(letter);
     setVisibleHandler(false);
   };
   return (
     <ul className={classes.container}>
-      {alphabetInfo
-        ? alphabetInfo.map(({ alphabetLetter, recordsLength }) => {
+      {groupedContactsList
+        ? groupedContactsList.map(({ alphabet, records }) => {
             return (
               <li
                 className={`${classes.alphabetLetter}
-                ${!recordsLength ? classes.disableLetter : ""}
-                ${alphabetLetter === activeLetter ? classes.activeLetter : ""}
+                ${!records ? classes.disableLetter : ""}
+                ${alphabet === activeLetter ? classes.activeLetter : ""}
                 `}
-                key={alphabetLetter}
-                onClick={() => onClickHandler(alphabetLetter)}
+                key={alphabet}
+                onClick={() => onClickHandler(alphabet)}
               >
-                <span>{alphabetLetter}</span>
-                <span className={classes.recordLength}>{recordsLength}</span>
+                <span>{alphabet}</span>
+                <span className={classes.recordLength}>
+                  {records?.length > 0 ? records.length : 0}
+                </span>
               </li>
             );
           })

@@ -1,59 +1,64 @@
 import { useEffect, useState } from "react";
-import { useContact } from "./features/contacts/contactsContext";
-import { getContacts } from "./api";
 import ContactsList from "./features/contacts/contactsList/ContactsList";
 import AlphabetLabel from "./features/label/AlphabetLabel";
-import { ShowCardContextProvider } from "./features/contacts/contactCard/showCardContext";
 import LoadingSpinner from "./features/loadingSpinner/LoadingSpinner";
 import Error from "./features/errorComponent/Error";
-import "./App.scss";
+import { getContacts } from "./api";
+import { ShowCardContextProvider } from "./features/contacts/contactCard/showCardContext";
+import { contactsGroupMaker } from "./utils/organizedData";
+import { IOrganizeContactList } from "./features/contacts/contactsInterface";
+import classes from "./scss/App.module.scss";
 
 function App() {
-  const { activeContactsList, setContactsListHandler, setActiveLetterHandler } =
-    useContact();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState();
+  const [groupedContactsList, setGroupedContactsList] = useState(
+    [] as IOrganizeContactList[]
+  );
+  const [selectedLetter, setSelectedLetter] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
-    getContacts(100)
+    getContacts(200)
       .then((response) => {
-        setContactsListHandler(response.data.results);
-        setActiveLetterHandler("a");
         setIsLoading(false);
+        const contactsGroup = contactsGroupMaker(response.data.results);
+
+        setGroupedContactsList(contactsGroup);
+
+        setSelectedLetter(() => {
+          return contactsGroup
+            ? contactsGroup.find((item) => item.records?.length > 0)?.alphabet
+            : undefined;
+        });
       })
       .catch((e) => {
-        setIsError(true);
-        setErrorMessage(e.message);
         setIsLoading(false);
-        console.log(typeof e.message);
+        setErrorMessage(e.message);
       });
-  }, [setContactsListHandler, setActiveLetterHandler]);
+  }, []);
 
-  if (isError) {
-    return <Error message={errorMessage} />;
-  }
+  if (errorMessage) return <Error message={errorMessage} />;
+  else if (isLoading) return <LoadingSpinner />;
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  const activeContacts = groupedContactsList.filter(
+    (item: IOrganizeContactList) => item.alphabet === selectedLetter
+  )[0]?.records;
 
-  if (activeContactsList?.record.length) {
-    return (
-      <>
-        <h1 className="digiContact">digiContact</h1>
-        <div className="mainContainer">
-          <ShowCardContextProvider>
-            <AlphabetLabel />
-            <ContactsList />
-          </ShowCardContextProvider>
-        </div>
-      </>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <>
+      <h1 className={classes.digiContact}>digiContact</h1>
+      <div className={classes.mainContainer}>
+        <ShowCardContextProvider>
+          <AlphabetLabel
+            activeLetter={selectedLetter}
+            groupedContactsList={groupedContactsList}
+            selectNewLetter={(letter: string) => setSelectedLetter(letter)}
+          />
+          <ContactsList contacts={activeContacts} />
+        </ShowCardContextProvider>
+      </div>
+    </>
+  );
 }
 
 export default App;

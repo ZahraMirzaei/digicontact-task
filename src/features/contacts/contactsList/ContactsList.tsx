@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { ContactCard } from "../contactCard/ContactCard";
-import { useContact } from "../contactsContext";
 import { useShowCard } from "../contactCard/showCardContext";
 import { IContact } from "../contactsInterface";
 import classes from "./ContactsList.module.scss";
-const ContactsList = () => {
-  const { activeContactsList } = useContact();
+
+interface Props {
+  contacts: IContact[];
+}
+const ContactsList: React.FC<Props> = ({ contacts }) => {
   const { isVisible, setVisibleHandler } = useShowCard();
   const [selectedContact, setSelectedContact] = useState<IContact>();
   let contactsList = null;
@@ -15,10 +17,12 @@ const ContactsList = () => {
     setVisibleHandler(true);
   }
 
-  if (!activeContactsList) {
-    contactsList = <div>loading</div>;
+  if (!contacts) {
+    contactsList = (
+      <p className={classes.noContacts}>There are no contact(s) to show!</p>
+    );
   } else {
-    contactsList = activeContactsList.record.map((contact: IContact) => (
+    contactsList = contacts.map((contact: IContact) => (
       <li
         className={`${classes.contactItem} ${
           selectedContact?.id.value === contact.id.value && isVisible

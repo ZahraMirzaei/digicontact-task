@@ -1,9 +1,6 @@
-import { ILabelInfo } from "../label/labelInterface";
 export interface IContact {
-  id: {
-    value: string;
-  };
   name: {
+    title: string;
     first: string;
     last: string;
   };
@@ -14,12 +11,31 @@ export interface IContact {
     };
     city: string;
     state: string;
-    postcode: string;
+    country: string;
+    postcode: number;
+    coordinates: {
+      latitude: string;
+      longitude: string;
+    };
+    timezone: {
+      offset: string;
+      description: string;
+    };
   };
   email: string;
-  phone: string;
   login: {
+    uuid: string;
     username: string;
+    password: string;
+    salt: string;
+    md5: string;
+    sha1: string;
+    sha256: string;
+  };
+  phone: string;
+  id: {
+    name: string;
+    value: string;
   };
   picture: {
     large: string;
@@ -28,15 +44,7 @@ export interface IContact {
   };
 }
 
-export interface IOrganizedContactList {
+export interface IOrganizeContactList {
   alphabet: string;
-  record: IContact[];
-}
-
-export interface IContactsContext {
-  activeContactsList: IOrganizedContactList | null;
-  activeLetter: string;
-  alphabetInfo: ILabelInfo[] | undefined;
-  setActiveLetterHandler: (letter: string) => void;
-  setContactsListHandler: (contactsList: IContact[]) => void;
+  records: IContact[];
 }
